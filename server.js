@@ -1,7 +1,8 @@
-const urlcheck = require("./controllers/urlcheck");
-const express = require("express");
-const cors = require("cors");
-const knex = require("knex");
+import handleurl from "./controllers/urlcheck.js";
+// const urlcheck = require("./controllers/urlcheck");
+import express from "express";
+import cors from "cors";
+import knex from "knex";
 
 const db = knex({
   client: "mysql",
@@ -14,6 +15,7 @@ const db = knex({
   },
   pool: { min: 0, max: 7 },
 });
+
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -24,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/urlcheck", (req, res) => {
-  urlcheck.handleurl(req, res, db);
+  handleurl(req, res, db);
 });
 app.listen(3002, () => {
   console.log(`app is running on port 3002`);
