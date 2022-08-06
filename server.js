@@ -10,7 +10,7 @@ dotenv.config();
 const db = knex({
   client: "mysql",
   connection: {
-    host: "us-cdbr-east-06.cleardb.net",
+    host: process.env.HOST,
     port: 3306,
     user: "b4c3713140856f",
     password: "a300f5e8",
