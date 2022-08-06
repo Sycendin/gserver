@@ -1,4 +1,5 @@
 import handleurl from "./controllers/urlcheck.js";
+import handlearchetypes from "./controllers/archetypes.js";
 import express from "express";
 import cors from "cors";
 import knex from "knex";
@@ -25,6 +26,9 @@ app.get("/", (req, res) => {
 
 app.post("/urlcheck", (req, res) => {
   handleurl(req, res, db);
+});
+app.post("/archetypes", (req, res) => {
+  handlearchetypes(req, res, db);
 });
 app.listen(3002, () => {
   console.log(`Server is running on port 3002`);
