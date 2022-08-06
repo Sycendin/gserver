@@ -1,9 +1,11 @@
 import handleurl from "./controllers/urlcheck.js";
 import handlearchetypes from "./controllers/archetypes.js";
+import herokuSSLRedirect from "heroku-ssl-redirect";
 import express from "express";
 import cors from "cors";
 import knex from "knex";
 import dotenv from "dotenv";
+const sslRedirect = herokuSSLRedirect.default;
 dotenv.config();
 const db = knex({
   client: "mysql",
@@ -20,7 +22,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-
+app.use(sslRedirect());
 app.get("/", (req, res) => {
   res.send("Server is working!");
 });
