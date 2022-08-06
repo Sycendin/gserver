@@ -5,12 +5,6 @@ import cors from "cors";
 import knex from "knex";
 import dotenv from "dotenv";
 dotenv.config();
-console.log(
-  process.env.HOST,
-  process.env.DBUSER,
-  process.env.DBPASS,
-  process.env.DATABASE
-);
 const db = knex({
   client: "mysql",
   connection: {
