@@ -25,10 +25,10 @@ app.get("/", (req, res) => {
   res.send("Server is working!");
 });
 
-app.post("/urlcheck", (req, res) => {
+app.get("/urlcheck", (req, res) => {
   handleurl(req, res, db);
 });
-app.post("/archetypes", (req, res) => {
+app.get("/archetypes", (req, res) => {
   handlearchetypes(req, res, db);
 });
 app.listen(process.env.PORT, () => {
