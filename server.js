@@ -3,15 +3,22 @@ import handlearchetypes from "./controllers/archetypes.js";
 import express from "express";
 import cors from "cors";
 import knex from "knex";
-
+import dotenv from "dotenv";
+dotenv.config();
+console.log(
+  process.env.HOST,
+  process.env.DBUSER,
+  process.env.DBPASS,
+  process.env.DATABASE
+);
 const db = knex({
   client: "mysql",
   connection: {
-    host: "127.0.0.1",
+    host: process.env.HOST,
     port: 3306,
-    user: "newgame",
-    password: "Brandon1",
-    database: "game",
+    user: process.env.DBUSER,
+    password: process.env.DBPASS,
+    database: process.env.DATABASE,
   },
 });
 
