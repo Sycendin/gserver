@@ -12,9 +12,9 @@ const db = knex({
   connection: {
     host: process.env.HOST,
     port: 3306,
-    user: "b4c3713140856f",
-    password: "a300f5e8",
-    database: "heroku_6d3c8c682bb15aa",
+    user: process.env.DBUSER,
+    password: process.env.DBPASS,
+    database: process.env.DATABASE,
   },
 });
 
