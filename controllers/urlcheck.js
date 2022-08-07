@@ -1,6 +1,5 @@
 const handleurl = (req, res, db) => {
   const { url } = req.body;
-
   if (!url) {
     // return Promise.reject("Incorrect url check");
     return res.status(400).json("Requires url");
