@@ -27,10 +27,10 @@ app.get("/", (req, res) => {
   res.send("Server is working!");
 });
 
-app.get("/urlcheck", (req, res) => {
+app.post("/urlcheck", (req, res) => {
   handleurl(req, res, db);
 });
-app.get("/archetypes", (req, res) => {
+app.post("/archetypes", (req, res) => {
   handlearchetypes(req, res, db);
 });
 app.listen(process.env.PORT, () => {
