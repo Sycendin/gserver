@@ -1,14 +1,17 @@
 const handleurl = (req, res, db) => {
-  const { url } = req.body;
+  const { url } = req;
+  console.log(url);
+  const urlCombine = url.replace(" ", "%20");
   if (!url) {
     // return Promise.reject("Incorrect url check");
     return res.status(400).json("Requires url");
   }
+
   // Find if url exists and return response to app
   return db
     .select("url")
     .from("urlcheck")
-    .where("url", req.body.url)
+    .where("url", urlCombine)
     .then((data) => {
       // Convert db results from json to js
       let results = JSON.parse(JSON.stringify(data));

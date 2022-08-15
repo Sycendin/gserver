@@ -1,5 +1,5 @@
 const handleMarkdown = (req, res, db) => {
-  const { mdname } = req.body;
+  const { mdname } = req;
   if (!mdname) {
     // return Promise.reject("Incorrect url check");
     return res.status(400).json("Requires data");
@@ -8,7 +8,7 @@ const handleMarkdown = (req, res, db) => {
   return db
     .select("link")
     .from("markdown")
-    .where("mdname", req.body.mdname)
+    .where("mdname", mdname)
     .then((data) => {
       // Convert db results from json to js
       let results = JSON.parse(JSON.stringify(data));

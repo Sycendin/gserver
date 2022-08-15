@@ -28,14 +28,14 @@ app.get("/", (req, res) => {
   res.send("Server is working!");
 });
 
-app.post("/urlcheck", (req, res) => {
-  handleurl(req, res, db);
+app.get("/urlcheck/:url", (req, res) => {
+  handleurl(req.params, res, db);
 });
-app.post("/archetypes", (req, res) => {
+app.get("/archetypes", (req, res) => {
   handlearchetypes(req, res, db);
 });
-app.post("/markdown", (req, res) => {
-  handleMarkdown(req, res, db);
+app.get("/markdown/:mdname", (req, res) => {
+  handleMarkdown(req.params, res, db);
 });
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port 3002`);
