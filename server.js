@@ -6,7 +6,12 @@ import express from "express";
 import cors from "cors";
 import knex from "knex";
 import dotenv from "dotenv";
-var whitelist = ["http://localhost:3000", "https://sycendin.github.io/"];
+var whitelist = [
+  "http://localhost:3002",
+  "http://localhost:3000",
+  "https://sycendin.github.io/",
+  "https://yu-game.herokuapp.com/",
+];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
