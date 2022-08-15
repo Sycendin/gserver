@@ -12,15 +12,7 @@ var whitelist = [
   "https://sycendin.github.io/",
   "https://yu-game.herokuapp.com/",
 ];
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+
 const sslRedirect = herokuSSLRedirect.default;
 dotenv.config();
 const db = knex({
@@ -43,13 +35,13 @@ app.get("/", (req, res) => {
   res.send("Server is working!");
 });
 
-app.get("/urlcheck/:url", cors(corsOptions), (req, res) => {
+app.get("/urlcheck/:url", (req, res) => {
   handleurl(req.params, res, db);
 });
-app.get("/archetypes", cors(corsOptions), (req, res) => {
+app.get("/archetypes", (req, res) => {
   handlearchetypes(req, res, db);
 });
-app.get("/markdown/:mdname", cors(corsOptions), (req, res) => {
+app.get("/markdown/:mdname", (req, res) => {
   handleMarkdown(req.params, res, db);
 });
 app.listen(process.env.PORT, () => {
