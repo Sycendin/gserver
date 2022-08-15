@@ -6,7 +6,16 @@ import express from "express";
 import cors from "cors";
 import knex from "knex";
 import dotenv from "dotenv";
-var allowedOrigins = ["http://localhost:3000", "https://sycendin.github.io/"];
+var whitelist = ["http://localhost:3000", "https://sycendin.github.io/"];
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 const sslRedirect = herokuSSLRedirect.default;
 dotenv.config();
 const db = knex({
@@ -23,34 +32,19 @@ const db = knex({
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin
-      // (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var msg =
-          "The CORS policy for this site does not " +
-          "allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-  })
-);
+app.use(cors());
 app.use(sslRedirect());
 app.get("/", (req, res) => {
   res.send("Server is working!");
 });
 
-app.get("/urlcheck/:url", (req, res) => {
+app.get("/urlcheck/:url", cors(corsOptions), (req, res) => {
   handleurl(req.params, res, db);
 });
-app.get("/archetypes", (req, res) => {
+app.get("/archetypes", cors(corsOptions), (req, res) => {
   handlearchetypes(req, res, db);
 });
-app.get("/markdown/:mdname", (req, res) => {
+app.get("/markdown/:mdname", cors(corsOptions), (req, res) => {
   handleMarkdown(req.params, res, db);
 });
 app.listen(process.env.PORT, () => {
