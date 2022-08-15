@@ -1,6 +1,7 @@
 import handleurl from "./controllers/urlcheck.js";
 import handlearchetypes from "./controllers/archetypes.js";
 import handleMarkdown from "./controllers/markdown.js";
+import handledata from "./controllers/data.js";
 import herokuSSLRedirect from "heroku-ssl-redirect";
 import express from "express";
 import cors from "cors";
@@ -43,6 +44,10 @@ app.get("/archetypes", (req, res) => {
 });
 app.get("/markdown/:mdname", (req, res) => {
   handleMarkdown(req.params, res, db);
+});
+
+app.get("/data/:data", (req, res) => {
+  handledata(req, res, db);
 });
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port 3002`);
