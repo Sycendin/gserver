@@ -2,6 +2,7 @@ import handleurl from "./controllers/urlcheck.js";
 import handlearchetypes from "./controllers/archetypes.js";
 import handleMarkdown from "./controllers/markdown.js";
 import handledata from "./controllers/data.js";
+import handlecombined from "./controllers/combined.js";
 import herokuSSLRedirect from "heroku-ssl-redirect";
 import express from "express";
 import cors from "cors";
@@ -45,7 +46,9 @@ app.get("/archetypes", (req, res) => {
 app.get("/markdown/:mdname", (req, res) => {
   handleMarkdown(req.params, res, db);
 });
-
+app.get("/combined/:url", (req, res) => {
+  handlecombined(req.params, res, db);
+});
 app.get("/data/:data", (req, res) => {
   handledata(req, res, db);
 });
