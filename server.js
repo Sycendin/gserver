@@ -40,8 +40,8 @@ app.get("/", (req, res) => {
 app.get("/urlcheck/:url", (req, res) => {
   handleurl(req.params, res, db);
 });
-app.get("/archetypes", (req, res) => {
-  handlearchetypes(req, res, db);
+app.get("/archetypes/:letter", (req, res) => {
+  handlearchetypes(req.params, res, db);
 });
 app.get("/markdown/:mdname", (req, res) => {
   handleMarkdown(req.params, res, db);
