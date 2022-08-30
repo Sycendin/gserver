@@ -1,6 +1,6 @@
 const handlecombined = (req, res, db) => {
   const { url } = req;
-  let x = [];
+  let totalContents = [];
   if (!url) {
     // return Promise.reject("Incorrect url check");
     return res.status(400).json("Requires data");
@@ -14,9 +14,9 @@ const handlecombined = (req, res, db) => {
     .then((data) => JSON.parse(JSON.stringify(data)))
     .then((data) => {
       data.forEach((element, i) => {
-        x.push(element.archetype);
+        totalContents.push(element.archetype);
       });
-      return x;
+      return totalContents;
     })
     .then((convert) => res.status(200).json(convert));
 };
