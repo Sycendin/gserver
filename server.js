@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 app.get("/urlcheck/:url", (req, res) => {
   handleurl(req.params, res, db);
 });
-app.get("/archetypes/:letter", (req, res) => {
+app.get("/archetypes/:letterparam", (req, res) => {
   handlearchetypes(req.params, res, db);
 });
 app.get("/markdown/:mdname", (req, res) => {
