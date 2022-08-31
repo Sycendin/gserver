@@ -9,16 +9,16 @@ const handleurl = (req, res, db) => {
 
   // Find if url exists and return response to app
   return db
-    .select("url")
+    .select("url", "archetypename")
     .from("urlcheck")
     .where("url", urlCombine)
     .then((data) => {
       // Convert db results from json to js
       let results = JSON.parse(JSON.stringify(data));
       if (results.length === 0) {
-        res.status(200).json("Does not exist");
+        res.status(200).json(["Does not exist"]);
       } else {
-        res.status(200).json("Does exist");
+        res.status(200).json(["Does exist", results[0].archetypename]);
       }
     });
 };
