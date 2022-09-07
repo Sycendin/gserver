@@ -3,6 +3,7 @@ import handlearchetypes from "./controllers/archetypes.js";
 import handleMarkdown from "./controllers/markdown.js";
 import handledata from "./controllers/data.js";
 import handlecombined from "./controllers/combined.js";
+import handleMultiMarkdown from "./controllers/multimarkdown.js";
 import herokuSSLRedirect from "heroku-ssl-redirect";
 import express from "express";
 import cors from "cors";
@@ -45,6 +46,9 @@ app.get("/archetypes/:letterparam", (req, res) => {
 });
 app.get("/markdown/:mdname", (req, res) => {
   handleMarkdown(req.params, res, db);
+});
+app.get("/multimarkdown/:mdname", (req, res) => {
+  handleMultiMarkdown(req.params, res, db);
 });
 app.get("/combined/:url", (req, res) => {
   handlecombined(req.params, res, db);
