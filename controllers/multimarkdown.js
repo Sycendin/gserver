@@ -5,7 +5,7 @@ const handleMultiMarkdown = (req, res, db) => {
     // return Promise.reject("Incorrect url check");
     return res.status(400).json("Requires data");
   }
-  // Get markdown file name, then fetch it, read data then split text based on keyword and remove beginning/trailing  whitespace
+  // Get markdown file name, then fetch it, read data then split text based on keyword and remove beginning/trailing  whitespace.
   const readData = async () => {
     const contents = await db
       .select("link")
