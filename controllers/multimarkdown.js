@@ -12,14 +12,18 @@ const handleMultiMarkdown = (req, res, db) => {
       .from("markdown")
       .where("mdname", mdname);
     const convert = await JSON.parse(JSON.stringify(contents));
-    const getFile = await fetch(convert[0].link);
-    const text = await getFile.text();
-    const splitText = text.split("breakline");
-    const trimStart = [];
-    splitText.forEach((element) => {
-      trimStart.push(element.trimStart());
-    });
-    res.status(200).json(trimStart);
+    if (convert.length >= 1) {
+      const getFile = await fetch(convert[0].link);
+      const text = await getFile.text();
+      const splitText = text.split("breakline");
+      const trimStart = [];
+      splitText.forEach((element) => {
+        trimStart.push(element.trimStart());
+      });
+      res.status(200).json(trimStart);
+    } else {
+      res.status(200).json(["Wrong Parameter(s)"]);
+    }
   };
   try {
     readData();
