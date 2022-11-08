@@ -31,5 +31,7 @@ const handleMultiMarkdown = (req, res, db) => {
     res.status(400).json(error);
   }
 };
+// rebuild heroku
+console.log("test");
 
 export default handleMultiMarkdown;
