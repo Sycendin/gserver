@@ -13,6 +13,7 @@ var whitelist = [
   "http://localhost:3002",
   "http://localhost:3000",
   "https://sycendin.github.io/",
+  "https://gserver.onrender.com/",
   "https://yu-game.herokuapp.com/",
 ];
 
